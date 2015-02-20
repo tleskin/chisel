@@ -31,6 +31,16 @@ class ChiselTest < Minitest::Test
     assert_equal ["<h2>This is text</h2>"], chisel.encapsulate_text('##This is text'.split(/^\n/))
   end
 
+  def test_it_removes_hashtag_encapsulates_with_h3
+    chisel = Chisel.new
+    assert_equal ["<h3>This is text</h3>"], chisel.encapsulate_text('###This is text'.split(/^\n/))
+  end
+
+  def test_it_removes_hashtag_encapsulates_with_h4
+    chisel = Chisel.new
+    assert_equal ["<h4>This is text</h4>"], chisel.encapsulate_text('####This is text'.split(/^\n/))
+  end
+
   def test_it_removes_hashtag_encapsulates_with_paragraph_tag
     chisel = Chisel.new
     assert_equal ["<p>This is text</p>"], chisel.encapsulate_text('This is text'.split(/^\n/))
