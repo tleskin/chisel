@@ -22,8 +22,17 @@ class ChiselTest < Minitest::Test
   end
 
   def test_it_removes_hashtag_encapsulates_with_h1
-    skip
     chisel = Chisel.new
-    assert_equal '<h1>This is text!</h1>', chisel.encapsulate_text_with_h1('#This is text!')
+    assert_equal ["<h1>This is text</h1>"], chisel.encapsulate_text('#This is text'.split(/^\n/))
+  end
+
+  def test_it_removes_hashtag_encapsulates_with_h2
+    chisel = Chisel.new
+    assert_equal ["<h2>This is text</h2>"], chisel.encapsulate_text('##This is text'.split(/^\n/))
+  end
+
+  def test_it_removes_hashtag_encapsulates_with_paragraph_tag
+    chisel = Chisel.new
+    assert_equal ["<p>This is text</p>"], chisel.encapsulate_text('This is text'.split(/^\n/))
   end
 end
