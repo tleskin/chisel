@@ -9,4 +9,9 @@ class ChiselTest < Minitest::Test
     chisel = Chisel.new
     assert true
   end
+
+  def test_it_accepts_a_string_of_text
+    chisel = Chisel.new
+    assert_equal "This is text!", chisel.take_in_text("This is text!")
+  end
 end
