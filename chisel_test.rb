@@ -12,6 +12,18 @@ class ChiselTest < Minitest::Test
 
   def test_it_accepts_a_string_of_text
     chisel = Chisel.new
-    assert_equal "This is text!", chisel.take_in_text("This is text!")
+    assert_equal 'This is text!', chisel.take_in_text('This is text!')
+  end
+
+  def test_it_recognizes_a_hashtag_in_text_string
+    chisel = Chisel.new
+    chisel.recognize_hashtag('#This is text!')
+    assert true, chisel.recognize_hashtag('#This is text!')
+  end
+
+  def test_it_removes_hashtag_encapsulates_with_h1
+    skip
+    chisel = Chisel.new
+    assert_equal '<h1>This is text!</h1>', chisel.encapsulate_text_with_h1('#This is text!')
   end
 end
